@@ -187,61 +187,12 @@
     <i class="fas fa-chevron-up"></i>
   </button>
 
-  <!-- More Works Dropdown -->
-  <div class="more-works-container">
-    <button class="more-works-btn" onclick="toggleMoreWorks()" title="View More Works from Our Lab">
-      <i class="fas fa-flask"></i>
-      More Works
-      <i class="fas fa-chevron-down dropdown-arrow"></i>
-    </button>
-    <div class="more-works-dropdown" id="moreWorksDropdown">
-      <div class="dropdown-header">
-        <h4>More Works from Our Lab</h4>
-        <button class="close-btn" onclick="toggleMoreWorks()">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      <div class="works-list">
-        <!-- TODO: Replace with your lab's related works -->
-        <a href="https://arxiv.org/abs/PAPER_ID_1" class="work-item" target="_blank">
-          <div class="work-info">
-            <!-- TODO: Replace with actual paper title -->
-            <h5>Paper Title 1</h5>
-            <!-- TODO: Replace with brief description -->
-            <p>Brief description of the work and its main contribution.</p>
-            <!-- TODO: Replace with venue and year -->
-            <span class="work-venue">Conference/Journal 2024</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-        <!-- TODO: Add more related works or remove extra items -->
-        <a href="https://arxiv.org/abs/PAPER_ID_2" class="work-item" target="_blank">
-          <div class="work-info">
-            <h5>Paper Title 2</h5>
-            <p>Brief description of the work and its main contribution.</p>
-            <span class="work-venue">Conference/Journal 2023</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-        <a href="https://arxiv.org/abs/PAPER_ID_3" class="work-item" target="_blank">
-          <div class="work-info">
-            <h5>Paper Title 3</h5>
-            <p>Brief description of the work and its main contribution.</p>
-            <span class="work-venue">Conference/Journal 2023</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-      </div>
-    </div>
-  </div>
-
   <main id="main-content">
   <section class="hero">
     <div class="hero-body">
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <!-- TODO: Replace with your paper title -->
             <h1 class="title is-1 publication-title">RefracGS: Underwater Novel View Synthesis Through
               Refractive Water Surfaces with 3D Gaussian Ray Tracing</h1>
             <div class="is-size-5 publication-authors" style="color: #2563eb;">
@@ -306,18 +257,17 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <!-- TODO: Replace with your PDF preview image -->
       <img src="static/images/teaser.png" alt="Teaser" class="teaser-image" style="width:100%;" loading="lazy" />
     </div>
   </div>
 </section>
 <!-- End teaser image -->
 
-<!-- Paper abstract -->
+<!-- Abstract + Video -->
 <section class="section hero is-light">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
+      <div class="column is-full">
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
@@ -330,30 +280,17 @@
             Experiments on both synthetic and real-world scenes with complex waves demonstrate that RefracGS outperforms prior refractive methods in visual quality and water surface accuracy, while achieving significantly ∼15× faster training and real-time rendering at 200 FPS.
           </p>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End paper abstract -->
-
-<!-- Video (local) -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <div class="publication-video">
-            <!-- TODO: Replace with your local video path -->
-            <video poster="" controls muted loop preload="metadata" style="width:100%;">
-              <source src="static/videos/video.mp4" type="video/mp4">
-            </video>
-          </div>
+        <div class="publication-video" style="margin-top: 1.5rem;">
+          <!-- TODO: Replace with your local video path -->
+          <video poster="" controls muted loop preload="metadata" style="width:100%;">
+            <source src="static/videos/video.mp4" type="video/mp4">
+          </video>
         </div>
       </div>
     </div>
   </div>
 </section>
-<!-- End video -->
+<!-- End abstract + video -->
 
 
 <!-- Pipeline -->
@@ -362,7 +299,7 @@
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered">Pipeline</h2>
       <div class="columns is-centered">
-        <div class="column is-four-fifths">
+        <div class="column is-full">
 
           <img src="static/images/pipeline.png" alt="Pipeline" style="width:100%;" loading="lazy" />
         </div>

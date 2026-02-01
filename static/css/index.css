@@ -326,7 +326,7 @@ body {
   transform: translateX(-50%);
   width: 60px;
   height: 3px;
-  background: var(--gradient-accent);
+  background: linear-gradient(135deg, #0077b6 0%, #00b4d8 100%);
   border-radius: 2px;
 }
 

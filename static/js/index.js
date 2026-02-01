@@ -89,7 +89,6 @@ window.addEventListener('scroll', function() {
         scrollButton.classList.remove('visible');
     }
 });
-
 // Video carousel autoplay when in view
 function setupVideoCarouselAutoplay() {
     const carouselVideos = document.querySelectorAll('.results-carousel video');
@@ -140,3 +139,4 @@ $(document).ready(function() {
     setupVideoCarouselAutoplay();
 
 })
+
