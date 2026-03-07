@@ -72,6 +72,19 @@
   <link rel="preconnect" href="https://documentcloud.adobe.com">
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
 
+  <!-- img-comparison-slider -->
+  <script
+    defer
+    src="./libs/img-comparison-slider/index.js"
+  ></script>
+  <link
+    rel="stylesheet"
+    href="./libs/img-comparison-slider/style.css"
+  />
+  <link
+    rel="stylesheet"
+    href="./style.css"
+  />
 
   <!-- TODO: Replace with your paper title and authors -->
   <title>RefracGS: Underwater Novel View Synthesis Through
@@ -193,15 +206,15 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">RefracGS: Underwater Novel View Synthesis Through
-              Refractive Water Surfaces with 3D Gaussian Ray Tracing</h1>
+            <h1 class="title is-1 publication-title">
+              RefracGS: Novel View Synthesis Through Refractive Water Surfaces with 3D Gaussian Ray Tracing
+            </h1>
             <div class="is-size-5 publication-authors" style="color: #2563eb;">
               <span class="author-block">Yiming Shao,</span>
               <span class="author-block">Qiyu Dai,</span>
               <span class="author-block">Chong Gao,</span>
               <span class="author-block">Guanbin Li,</span>
-              <span class="author-block">Ding Liang,</span>
-              <span class="author-block">Yan-Pei Cao,</span>
+              <span class="author-block">Yequan Wang,</span>
               <span class="author-block">He Sun,</span>
               <span class="author-block">Qiong Zeng,</span>
               <span class="author-block">Baoquan Chen,</span>
@@ -209,8 +222,8 @@
             </div>
 
             <div class="is-size-5 publication-authors has-text-centered" style="margin-top: 0.5rem;">
-              <div>Shandong University, Peking University, Sun Yat-sen University</div>
-              <div>Tsinghua University, VAST</div>
+              <div>Shandong University, Peking University</div>
+              <div>Sun Yat-sen University, Beijing Academy of Artificial Intelligence </div>
             </div>
 
                   <div class="column has-text-centered">
@@ -271,13 +284,10 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Reconstructing underwater scenes from above-water views presents fundamental challenges due to severe, spatially varying light refraction across unknown and dynamic water–air interfaces. While recent neural representations such as NeRF and 3D Gaussian Splatting (3DGS) demonstrate compelling novel view synthesis, their assumption of straight-line light propagation fails under refractive conditions, resulting in distorted geometry and view-dependent artifacts.
-
-            In this work, we present RefracGS, a novel refractive scene reconstruction framework that jointly reconstructs the refractive water surface and the underwater scene. The key insight is to disentangle the two media into distinct, jointly optimized representations: the water surface is modeled as a compact, global MLP height field that captures high-frequency wave geometry, while the underwater scene is represented as a 3D Gaussian field rendered via refracted ray tracing.
-            
-            For each camera ray, we differentiably compute its intersection with the learned water height field via a proxy mesh. Snell’s law is then applied to determine the refracted path, along which color and density are accumulated using 3D Gaussian primitives. By jointly optimizing the surface MLP and Gaussian field in an end-to-end manner, our method enables high-fidelity refractive view synthesis and accurate, consistent water surface geometry recovery.
-            
-            Experiments on both synthetic and real-world scenes with complex waves demonstrate that RefracGS outperforms prior refractive methods in visual quality and water surface accuracy, while achieving significantly ∼15× faster training and real-time rendering at 200 FPS.
+            Novel view synthesis (NVS) through non-planar refractive surfaces presents fundamental challenges due to severe, spatially varying optical distortions. While recent representations like NeRF and 3D Gaussian Splatting (3DGS) excel at NVS, their assumption of straight-line ray propagation fails under these conditions, leading to significant artifacts.
+            To overcome this limitation, we introduce RefracGS, a framework that jointly reconstructs the refractive water surface and the scene beneath the interface. Our key insight is to explicitly decouple the refractive boundary from the target objects: the refractive surface is modeled via a neural height field, capturing wave geometry, while the underlying scene is represented as a 3D Gaussian field.
+            We formulate a refraction-aware Gaussian ray tracing approach that accurately computes non-linear ray trajectories using Snell's law and efficiently renders the underlying Gaussian field while backpropagating the loss gradients to the parameterized refractive surface. Through end-to-end joint optimization of both representations, our method ensures high-fidelity NVS and view-consistent surface recovery.
+            Experiments on both synthetic and real-world scenes with complex waves demonstrate that RefracGS outperforms prior refractive methods in visual quality, while achieving ~15x faster training and real-time rendering at 200 FPS.
           </p>
         </div>
         <div class="publication-video" style="margin-top: 1.5rem;">
@@ -320,8 +330,146 @@
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered">Results</h2>
       <div class="columns is-centered">
-        <div class="column is-four-fifths">
+        <div class="column is-full">
           <!-- TODO: Add your results (images, videos, etc.) -->
+          <h4 class="title is-4" style="margin-top:1.5rem; text-align: center;">Metrics on NeRFrac Dataset (Real + Synthetic)</h4>
+          <iframe src="static/charts/metrics.html" width="100%" scrolling="no" style="border: none; overflow: hidden;" onload="this.height = this.contentWindow.document.documentElement.scrollHeight + 'px';"></iframe>
+
+          <h4 class="title is-4" style="margin-top:1.5rem; text-align: center;">Comparison on NeRFrac Real Dataset</h4>
+          <div class="columns">
+            <div class="column">
+              <div class="content">
+                <img-comparison-slider>
+                  <figure slot="first" class="before" style="margin: 0;">
+                    <img width="100%" src="./static/results/redflower/ours.png">
+                    <figcaption>Ours</figcaption>
+                  </figure>
+                  <figure slot="second" class="after" style="margin: 0;">
+                    <img width="100%" src="./static/results/redflower/gt.png">
+                    <figcaption>GT</figcaption>
+                  </figure>
+                </img-comparison-slider>
+              </div>
+            </div>
+            <div class="column">
+              <div class="content">
+                <img-comparison-slider>
+                  <figure slot="first" class="before" style="margin: 0;">
+                    <img width="100%" src="./static/results/redflower/ours.png">
+                    <figcaption>Ours</figcaption>
+                  </figure>
+                  <figure slot="second" class="after" style="margin: 0;">
+                    <img width="100%" src="./static/results/redflower/nerfrac.png">
+                    <figcaption>NeRFrac</figcaption>
+                  </figure>
+                </img-comparison-slider>
+              </div>
+            </div>
+            <div class="column">
+              <div class="content">
+                <img-comparison-slider>
+                  <figure slot="first" class="before" style="margin: 0;">
+                    <img width="100%" src="./static/results/redflower/ours.png">
+                    <figcaption>Ours</figcaption>
+                  </figure>
+                  <figure slot="second" class="after" style="margin: 0;">
+                    <img width="100%" src="./static/results/redflower/3dgrt.png">
+                    <figcaption>3DGRT</figcaption>
+                  </figure>
+                </img-comparison-slider>
+              </div>
+            </div>
+          </div>
+          <h4 class="title is-4" style="margin-top:1.5rem; text-align: center;">Comparison on NeRFrac Synthetic Dataset</h4>
+          <div class="columns">
+            <div class="column">
+              <div class="content">
+                <img-comparison-slider>
+                  <figure slot="first" class="before" style="margin: 0;">
+                    <img width="100%" src="./static/results/primary_sine/ours.png">
+                    <figcaption>Ours</figcaption>
+                  </figure>
+                  <figure slot="second" class="after" style="margin: 0;">
+                    <img width="100%" src="./static/results/primary_sine/gt.png">
+                    <figcaption>GT</figcaption>
+                  </figure>
+                </img-comparison-slider>
+              </div>
+            </div>
+            <div class="column">
+              <div class="content">
+                <img-comparison-slider>
+                  <figure slot="first" class="before" style="margin: 0;">
+                    <img width="100%" src="./static/results/primary_sine/ours.png">
+                    <figcaption>Ours</figcaption>
+                  </figure>
+                  <figure slot="second" class="after" style="margin: 0;">
+                    <img width="100%" src="./static/results/primary_sine/nerfrac.png">
+                    <figcaption>NeRFrac</figcaption>
+                  </figure>
+                </img-comparison-slider>
+              </div>
+            </div>
+            <div class="column">
+              <div class="content">
+                <img-comparison-slider>
+                  <figure slot="first" class="before" style="margin: 0;">
+                    <img width="100%" src="./static/results/primary_sine/ours.png">
+                    <figcaption>Ours</figcaption>
+                  </figure>
+                  <figure slot="second" class="after" style="margin: 0;">
+                    <img width="100%" src="./static/results/primary_sine/3dgrt.png">
+                    <figcaption>3DGRT</figcaption>
+                  </figure>
+                </img-comparison-slider>
+              </div>
+            </div>
+          </div>
+          <h4 class="title is-4" style="margin-top:1.5rem; text-align: center;">Comparison on RefracGS Dataset</h4>
+          <div class="columns">
+            <div class="column">
+              <div class="content">
+                <img-comparison-slider>
+                  <figure slot="first" class="before" style="margin: 0;">
+                    <img width="100%" src="./static/results/desktop/ours.png">
+                    <figcaption>Ours</figcaption>
+                  </figure>
+                  <figure slot="second" class="after" style="margin: 0;">
+                    <img width="100%" src="./static/results/desktop/gt.png">
+                    <figcaption>GT</figcaption>
+                  </figure>
+                </img-comparison-slider>
+              </div>
+            </div>
+            <div class="column">
+              <div class="content">
+                <img-comparison-slider>
+                  <figure slot="first" class="before" style="margin: 0;">
+                    <img width="100%" src="./static/results/desktop/ours.png">
+                    <figcaption>Ours</figcaption>
+                  </figure>
+                  <figure slot="second" class="after" style="margin: 0;">
+                    <img width="100%" src="./static/results/desktop/nerfrac.png">
+                    <figcaption>NeRFrac</figcaption>
+                  </figure>
+                </img-comparison-slider>
+              </div>
+            </div>
+            <div class="column">
+              <div class="content">
+                <img-comparison-slider>
+                  <figure slot="first" class="before" style="margin: 0;">
+                    <img width="100%" src="./static/results/desktop/ours.png">
+                    <figcaption>Ours</figcaption>
+                  </figure>
+                  <figure slot="second" class="after" style="margin: 0;">
+                    <img width="100%" src="./static/results/desktop/3dgrt.png">
+                    <figcaption>3DGRT</figcaption>
+                  </figure>
+                </img-comparison-slider>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

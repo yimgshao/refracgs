@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metrics Chart (Tighter Row Header Spacing)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: transparent; 
+            color: #333333;
+            margin: 0;
+            padding: 10px 5px; 
+            display: flex;
+            justify-content: center;
+        }
+
+        .chart-container {
+            display: grid;
+            width: 100%; 
+            max-width: 1400px; 
+            /* 保持左侧列宽和整体比例 */
+            grid-template-columns: 20px repeat(4, minmax(0, 1fr));
+            gap: 8px 2%; 
+            align-items: center;
+        }
+
+        .col-header {
+            text-align: center;
+            font-size: 18px; 
+            font-weight: 500;
+            /* 恢复列标题原来的间距 */
+            margin-bottom: 10px; 
+        }
+
+        .row-header {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            text-align: center;
+            font-size: 20px; 
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #111;
+            /* 关键修改：单独把行标题向右（向表格方向）推 15px */
+            position: relative;
+            left: 5px; 
+        }
+
+        .cell {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            border-left: 2px solid #333333;
+            padding: 5px 0; 
+            height: 110px; 
+            justify-content: center;
+        }
+
+        .bar-group {
+            display: flex;
+            align-items: center;
+            position: relative;
+            height: 40px;
+            width: 100%;
+        }
+
+        .bar {
+            height: 100%;
+            border-radius: 0 2px 2px 0;
+        }
+        .bar.nerfrac { background-color: #007D7A; }
+        .bar.ours { background-color: #FFA000; }
+
+        .bar-text {
+            position: absolute;
+            left: 0; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            line-height: 1.1;
+            padding-left: 12px;
+            white-space: nowrap;
+        }
+        
+        .val {
+            font-size: 18px; 
+            font-weight: bold;
+        }
+        .method {
+            font-size: 12px; 
+            margin-top: 2px;
+        }
+
+        .text-nerfrac { color: #007D7A; }
+        .text-ours { color: #FFA000; }
+    </style>
+</head>
+<body>
+
+<div class="chart-container">
+    <div></div> <div class="col-header">SSIM</div>
+    <div class="col-header">PSNR</div>
+    <div class="col-header">Train Time (min)</div>
+    <div class="col-header">Render FPS</div>
+
+    <div class="row-header">Real</div>
+    
+    <div class="cell">
+        <div class="bar-group">
+            <div class="bar nerfrac" style="width: 19.6%;"></div>
+            <div class="bar-text text-nerfrac" style="left: 19.6%;">
+                <span class="val">0.876</span><span class="method">NeRFrac</span>
+            </div>
+        </div>
+        <div class="bar-group">
+            <div class="bar ours" style="width: 65.0%;"></div>
+            <div class="bar-text text-ours" style="left: 65.0%;">
+                <span class="val">0.913</span><span class="method">Ours</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="cell">
+        <div class="bar-group">
+            <div class="bar nerfrac" style="width: 20.2%;"></div>
+            <div class="bar-text text-nerfrac" style="left: 20.2%;">
+                <span class="val">28.14</span><span class="method">NeRFrac</span>
+            </div>
+        </div>
+        <div class="bar-group">
+            <div class="bar ours" style="width: 65.0%;"></div>
+            <div class="bar-text text-ours" style="left: 65.0%;">
+                <span class="val">30.67</span><span class="method">Ours</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="cell">
+        <div class="bar-group">
+            <div class="bar nerfrac" style="width: 65.0%;"></div>
+            <div class="bar-text text-nerfrac" style="left: 65.0%;">
+                <span class="val">149</span><span class="method">NeRFrac</span>
+            </div>
+        </div>
+        <div class="bar-group">
+            <div class="bar ours" style="width: 4.4%;"></div>
+            <div class="bar-text text-ours" style="left: 4.4%;">
+                <span class="val">10</span><span class="method">Ours</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="cell">
+        <div class="bar-group">
+            <div class="bar nerfrac" style="width: 2.0%;"></div>
+            <div class="bar-text text-nerfrac" style="left: 2.0%;">
+                <span class="val">&lt;1</span><span class="method">NeRFrac</span>
+            </div>
+        </div>
+        <div class="bar-group">
+            <div class="bar ours" style="width: 65.0%;"></div>
+            <div class="bar-text text-ours" style="left: 65.0%;">
+                <span class="val">242</span><span class="method">Ours</span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row-header">Synthetic</div>
+
+    <div class="cell">
+        <div class="bar-group">
+            <div class="bar nerfrac" style="width: 34.4%;"></div>
+            <div class="bar-text text-nerfrac" style="left: 34.4%;">
+                <span class="val">0.944</span><span class="method">NeRFrac</span>
+            </div>
+        </div>
+        <div class="bar-group">
+            <div class="bar ours" style="width: 65.0%;"></div>
+            <div class="bar-text text-ours" style="left: 65.0%;">
+                <span class="val">0.952</span><span class="method">Ours</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="cell">
+        <div class="bar-group">
+            <div class="bar nerfrac" style="width: 23.6%;"></div>
+            <div class="bar-text text-nerfrac" style="left: 23.6%;">
+                <span class="val">34.381</span><span class="method">NeRFrac</span>
+            </div>
+        </div>
+        <div class="bar-group">
+            <div class="bar ours" style="width: 65.0%;"></div>
+            <div class="bar-text text-ours" style="left: 65.0%;">
+                <span class="val">36.81</span><span class="method">Ours</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="cell">
+        <div class="bar-group">
+            <div class="bar nerfrac" style="width: 65.0%;"></div>
+            <div class="bar-text text-nerfrac" style="left: 65.0%;">
+                <span class="val">77</span><span class="method">NeRFrac</span>
+            </div>
+        </div>
+        <div class="bar-group">
+            <div class="bar ours" style="width: 10.1%;"></div>
+            <div class="bar-text text-ours" style="left: 10.1%;">
+                <span class="val">12</span><span class="method">Ours</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="cell">
+        <div class="bar-group">
+            <div class="bar nerfrac" style="width: 2.0%;"></div>
+            <div class="bar-text text-nerfrac" style="left: 2.0%;">
+                <span class="val">&lt;1</span><span class="method">NeRFrac</span>
+            </div>
+        </div>
+        <div class="bar-group">
+            <div class="bar ours" style="width: 65.0%;"></div>
+            <div class="bar-text text-ours" style="left: 65.0%;">
+                <span class="val">203</span><span class="method">Ours</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
