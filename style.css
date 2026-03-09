@@ -26,3 +26,7 @@ left: 12px;
 .after figcaption {
 right: 12px;
 }
+
+.block {
+    height: 30px;
+}
