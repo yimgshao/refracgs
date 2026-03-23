@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vertical Metrics Chart (Compact Title)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: transparent; 
+            color: #333333;
+            margin: 0;
+            padding: 20px; 
+            display: flex;
+            justify-content: center;
+        }
+
+        .chart-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        /* 全局图例 */
+        .legend {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 30px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .color-box {
+            width: 14px;
+            height: 14px;
+            border-radius: 2px;
+        }
+        .color-box.nerfrac { background-color: #007D7A; }
+        .color-box.ours { background-color: #FFA000; }
+
+        /* 1x4 网格布局 */
+        .grid-1x4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            width: 100%;
+        }
+
+        .metric-card {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .metric-title {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: -10px;
+            color: #111;
+        }
+
+        /* 绘图区：改为 1fr 1fr 等分网格，强制对齐 */
+        .plot-area {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: flex-end;
+            height: 180px; 
+            border-bottom: 2px solid #333; 
+        }
+
+        /* 强制柱子在其所在的 50% 区域内绝对居中 */
+        .dataset-bars {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 6px; 
+            height: 100%;
+        }
+
+        .bar-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            height: 100%;
+            width: 40px; 
+        }
+
+        .val {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .bar {
+            width: 100%;
+            border-radius: 3px 3px 0 0; 
+        }
+        .bar.nerfrac { background-color: #007D7A; }
+        .bar.ours { background-color: #FFA000; }
+
+        .text-nerfrac { color: #007D7A; }
+        .text-ours { color: #FFA000; }
+
+        /* X轴下方标签：同样改为 1fr 1fr 等分网格，确保与柱子中心对齐 */
+        .x-axis-labels {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin-top: 10px;
+            font-weight: 600;
+            font-size: 16px;
+            color: #111;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="chart-wrapper">
+    
+    <div class="legend">
+        <div class="legend-item text-nerfrac">
+            <div class="color-box nerfrac"></div> NeRFrac
+        </div>
+        <div class="legend-item text-ours">
+            <div class="color-box ours"></div> Ours
+        </div>
+    </div>
+
+    <div class="grid-1x4">
+        
+        <div class="metric-card">
+            <div class="metric-title">SSIM</div>
+            <div class="plot-area">
+                <div class="dataset-bars">
+                    <div class="bar-col">
+                        <div class="val text-nerfrac">0.876</div>
+                        <div class="bar nerfrac" style="height: 19.6%;"></div>
+                    </div>
+                    <div class="bar-col">
+                        <div class="val text-ours">0.913</div>
+                        <div class="bar ours" style="height: 65.0%;"></div>
+                    </div>
+                </div>
+                <div class="dataset-bars">
+                    <div class="bar-col">
+                        <div class="val text-nerfrac">0.944</div>
+                        <div class="bar nerfrac" style="height: 34.4%;"></div>
+                    </div>
+                    <div class="bar-col">
+                        <div class="val text-ours">0.952</div>
+                        <div class="bar ours" style="height: 65.0%;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="x-axis-labels">
+                <div>Real</div>
+                <div>Synthetic</div>
+            </div>
+        </div>
+
+        <div class="metric-card">
+            <div class="metric-title">PSNR</div>
+            <div class="plot-area">
+                <div class="dataset-bars">
+                    <div class="bar-col">
+                        <div class="val text-nerfrac">28.14</div>
+                        <div class="bar nerfrac" style="height: 20.2%;"></div>
+                    </div>
+                    <div class="bar-col">
+                        <div class="val text-ours">30.67</div>
+                        <div class="bar ours" style="height: 65.0%;"></div>
+                    </div>
+                </div>
+                <div class="dataset-bars">
+                    <div class="bar-col">
+                        <div class="val text-nerfrac">34.38</div>
+                        <div class="bar nerfrac" style="height: 23.6%;"></div>
+                    </div>
+                    <div class="bar-col">
+                        <div class="val text-ours">35.81</div>
+                        <div class="bar ours" style="height: 65.0%;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="x-axis-labels">
+                <div>Real</div>
+                <div>Synthetic</div>
+            </div>
+        </div>
+
+        <div class="metric-card">
+            <div class="metric-title">Train Time (min)</div>
+            <div class="plot-area">
+                <div class="dataset-bars">
+                    <div class="bar-col">
+                        <div class="val text-nerfrac">149</div>
+                        <div class="bar nerfrac" style="height: 65.0%;"></div>
+                    </div>
+                    <div class="bar-col">
+                        <div class="val text-ours">10</div>
+                        <div class="bar ours" style="height: 4.4%;"></div>
+                    </div>
+                </div>
+                <div class="dataset-bars">
+                    <div class="bar-col">
+                        <div class="val text-nerfrac">77</div>
+                        <div class="bar nerfrac" style="height: 65.0%;"></div>
+                    </div>
+                    <div class="bar-col">
+                        <div class="val text-ours">12</div>
+                        <div class="bar ours" style="height: 10.1%;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="x-axis-labels">
+                <div>Real</div>
+                <div>Synthetic</div>
+            </div>
+        </div>
+
+        <div class="metric-card">
+            <div class="metric-title">Render FPS</div>
+            <div class="plot-area">
+                <div class="dataset-bars">
+                    <div class="bar-col">
+                        <div class="val text-nerfrac">&lt;1</div>
+                        <div class="bar nerfrac" style="height: 2.0%;"></div>
+                    </div>
+                    <div class="bar-col">
+                        <div class="val text-ours">242</div>
+                        <div class="bar ours" style="height: 65.0%;"></div>
+                    </div>
+                </div>
+                <div class="dataset-bars">
+                    <div class="bar-col">
+                        <div class="val text-nerfrac">&lt;1</div>
+                        <div class="bar nerfrac" style="height: 2.0%;"></div>
+                    </div>
+                    <div class="bar-col">
+                        <div class="val text-ours">203</div>
+                        <div class="bar ours" style="height: 65.0%;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="x-axis-labels">
+                <div>Real</div>
+                <div>Synthetic</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
