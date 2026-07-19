@@ -1,0 +1,59 @@
+# @package _global_
+
+# order in which configs override each other (/* - denotes a relative search path)
+defaults:
+  - /base_gs
+  - /dataset: nerf
+  - /initialization: random
+  - /render: 3dgrt
+  - /surface: height_field
+  - _self_
+
+# overwrite of default parameters
+val_frequency: 1000 # never validate
+n_iterations: 15000
+
+checkpoint:
+  iterations: ${int_list:[ 7000, 15000 ]}
+
+surface:
+  init_depth: -1
+  bounds: [-0.5, 0.5, -0.5, 0.5]
+  step: 0.005
+  eta: 1.1
+  recursive_iter: 2
+  lr_init: 0.0005
+  lr_final: 0.000005
+  network:
+    final_dim_init: 0.1
+    multires: 6  # best is 6 and 8
+    internal_dims: 256
+    hidden: 6
+
+initialization:
+  num_gaussians: 20_000
+  bounds: [-0.8, 0.8, -0.8, 0.8, -2.0, -1.5]
+
+optimizer:
+  params:
+    surface:
+      lr: ${surface.lr_init}
+
+strategy:
+  densify:
+    clone_grad_threshold: 0.0003
+    split_grad_threshold: 0.0003
+    relative_size_threshold: 0.015  # 0.015
+  density_decay:
+    gamma: 0.99
+    start_iteration: 500 # 500
+    end_iteration: 15000 # 15000
+    frequency: 50
+
+scheduler:
+  surface:
+    type: ${surface.scheduler_type}
+    lr_init: ${surface.lr_init}
+    lr_final: ${surface.lr_final}
+    max_steps: ${surface.scheduler_max_step}
+

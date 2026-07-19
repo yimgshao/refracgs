@@ -1,0 +1,52 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+
+# --- Training / experiment outputs ---
+runs/
+outputs/
+eval/
+results/
+wandb/
+extra_info/
+grid_search/
+
+# --- Checkpoints & large artifacts ---
+*.pt
+*.pth
+*.ckpt
+*.ply
+*.ingp
+*.usdz
+
+# --- Datasets (download separately, see README); keep only the .gitkeep placeholder ---
+data/*
+!data/.gitkeep
+
+# --- CUDA / OptiX JIT build artifacts ---
+*.so
+*.o
+*.cu.o
+.ninja_log
+.ninja_deps
+build/
+# slang-generated kernel headers (regenerated at build time)
+threedgrt_tracer/include/3dgrt/kernels/slang/*.cuh*
+
+# --- Profiler / debug output ---
+trace/
+debug_**
+nsys*.nsys-rep
+*.ncu-rep
+
+# --- GUI / editor / OS ---
+.polyscope.ini
+imgui.ini
+.vscode/
+.idea/
+.DS_Store
+
+# --- Misc ---
+temp_frames/

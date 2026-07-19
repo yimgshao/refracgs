@@ -1,0 +1,6 @@
+name: basic
+
+lr_init: 0.0001
+lr_final: 0.000001
+scheduler_type: exp
+scheduler_max_step: 30000

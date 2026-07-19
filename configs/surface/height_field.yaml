@@ -1,0 +1,20 @@
+name: height_field
+
+eta: 1.33
+init_depth: 0
+bounds: [-1, 1, -1, 1]
+step: 0.01
+recursive_iter: 3
+
+network:
+  internal_dims: 256
+  hidden: 6
+  multires: 6
+  activation: relu
+  final_dim_init: 0.1
+  implemention: nerf  # nerf or tcnn
+
+lr_init: 0.0005
+lr_final: 0.000005
+scheduler_type: exp
+scheduler_max_step: 30000

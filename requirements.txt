@@ -1,0 +1,22 @@
+torchmetrics
+plyfile
+scikit-learn
+tensorboard
+wandb
+omegaconf
+hydra-core
+slangtorch==1.3.4
+opencv-python
+imageio
+tqdm
+msgpack
+rich
+addict
+einops
+kornia
+dataclasses_json
+usd-core
+open3d
+polyscope>=2.3.0
+setuptools <72.1.0
+viser

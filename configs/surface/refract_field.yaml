@@ -1,0 +1,15 @@
+name: refract_field
+
+eta: 1.33
+init_depth: -0.55
+
+network:
+  depth: 8
+  width: 256
+  skip: 5
+  multires: 8
+
+lr_init: 0.002
+lr_final: 0.00002
+scheduler_type: exp
+scheduler_max_step: 30000

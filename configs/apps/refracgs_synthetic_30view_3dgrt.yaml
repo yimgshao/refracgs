@@ -1,0 +1,22 @@
+# @package _global_
+
+# order in which configs override each other (/* - denotes a relative search path)
+defaults:
+  - /base_gs
+  - /dataset: nerf
+  - /initialization: random
+  - /render: 3dgrt
+  - /surface: basic
+  - _self_
+
+# overwrite of default parameters
+val_frequency: 1000 # never validate
+n_iterations: 30000
+
+initialization:
+  num_gaussians: 20_000
+  bounds: [-0.25, 0.25, -0.25, 0.25, -2.0, -1.8]
+
+loss:
+  use_opacity: false
+  

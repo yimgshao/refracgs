@@ -1,0 +1,3 @@
+method: random
+num_gaussians: 100_000
+bounds: [-1.5, 1.5, -1.5, 1.5, -1.5, 1.5]
