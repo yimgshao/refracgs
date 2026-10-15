@@ -1,7 +1,7 @@
 # RefracGS: Novel View Synthesis Through Refractive Water Surfaces with 3D Gaussian Ray Tracing
 Yiming Shao, Qiyu Dai, Chong Gao, Guanbin Li, Yequan Wang, He Sun, Qiong Zeng, Baoquan Chen, Wenzheng Chen
 
-### [Project Page](https://yimgshao.github.io/refracgs/) | [arXiv](https://arxiv.org/abs/2603.21695) | [Dataset](https://huggingface.co/datasets/yimingshao1/refracgs_dataset)
+### [Project Page](https://yimgshao.github.io/refracgs/) | [Paper](https://link.springer.com/chapter/10.1007/978-3-032-37261-1_23) | [arXiv](https://arxiv.org/abs/2603.21695) | [Dataset](https://huggingface.co/datasets/yimingshao1/refracgs_dataset)
 
 ![Teaser image](assets/teaser.png)
 We present RefracGS, a through-refraction novel view synthesis framework with refraction-aware 3D Gaussian ray tracing. It achieves state-of-the-art visual quality while maintaining 15x faster training and real-time 200 FPS rendering.
